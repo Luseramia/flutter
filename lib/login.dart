@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_login/home.dart';
+
 import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -27,7 +27,7 @@ class _loginState extends State<login> {
   TextEditingController email = TextEditingController();
 
   Future signin() async {
-    String url = "http://192.168.139.160/flutter_login/login.php";
+    String url = "http://192.168.1.56/flutter_login/login.php";
     final respone = await http.post(Uri.parse(url), body: {
       'password': password.text,
       'email': email.text,

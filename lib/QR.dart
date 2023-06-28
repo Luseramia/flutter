@@ -89,7 +89,7 @@ class _MyWidgetState extends State<MyWidget>
                               decoration: BoxDecoration(),
                               child: Center(
                                 child: Container(
-                                  child: QrImage(
+                                  child: QrImageView(
                                     data: _email,
                                     size: 200,
                                     backgroundColor: Colors.white12,

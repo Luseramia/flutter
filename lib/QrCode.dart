@@ -64,7 +64,7 @@ class _MyQRCodeState extends State<MyQRCode> {
                   if (snapshot.hasError) print(snapshot.error);
                   return snapshot.hasData
                       ? Container(
-                          child: QrImage(
+                          child: QrImageView(
                             data: _email,
                             size: MediaQuery.of(context).size.height * 0.3,
                             backgroundColor: Colors.white12,

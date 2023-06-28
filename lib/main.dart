@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_login/home.dart';
+
 import 'package:flutter_login/index.dart';
 import 'package:flutter_login/test/test1.dart';
 import 'login.dart';
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: Checklogin(),
+      home: login(),
       routes: {
         'register': (context) => register(),
         'login': (context) => login(),

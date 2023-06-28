@@ -23,7 +23,7 @@ class _registerState extends State<register> {
   TextEditingController email = TextEditingController();
 
   Future signup() async {
-    String url = "http://192.168.162.160/flutter_login/register.php";
+    String url = "http://192.168.1.56/flutter_login/register.php";
     final respone = await http.post(Uri.parse(url), body: {
       'name': name.text,
       'password': password.text,

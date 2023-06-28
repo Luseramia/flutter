@@ -1,17 +1,19 @@
 import 'dart:convert';
 import 'dart:ffi';
 import 'dart:math';
-import 'package:flutter_login/home.dart';
+import 'package:flutter_login/QrCode.dart';
+import 'package:flutter_login/activity.dart';
 import 'package:flutter_login/index.dart';
 import 'package:flutter_login/login.dart';
+import 'package:flutter_login/register.dart';
 import 'package:flutter_login/rive_assets.dart';
 import 'package:flutter_login/rive_util.dart';
 import 'package:flutter_login/sildmenutile.dart';
 import 'package:flutter_login/slidemenu.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:rive/rive.dart';
-import 'homepage1.dart';
 import 'infocard.dart';
 import 'user.dart';
 import 'button/glowing_button.dart';
@@ -57,7 +59,7 @@ class _HomepageState extends State<Homepage>
   }
 
   late var _email = " ";
-  @override
+
   Future get_email() async {
     String? email = await user.getEmail();
     return _email = email.toString();
@@ -69,16 +71,14 @@ class _HomepageState extends State<Homepage>
     Navigator.pushNamed(context, 'login');
   }
 
-  @override
   void dispose() {
     _animationController.dispose();
     _pageController.dispose();
     super.dispose();
   }
 
-  @override
   Future all_image() async {
-    var url = "http://192.168.139.160/flutter_login/image.php";
+    var url = "http://192.168.1.56/flutter_login/image.php";
     final respones = await http.post(Uri.parse(url));
     return json.decode(respones.body);
   }
@@ -157,28 +157,6 @@ class _HomepageState extends State<Homepage>
                                 .copyWith(color: Colors.white70),
                           ),
                         ),
-                        ...sideMenues2.map((menu) => Sidemenutile(
-                              route: menu.route,
-                              menu: menu,
-                              riveonInit: (artboard) {
-                                StateMachineController controller =
-                                    RiveUtil.getRiveController(artboard,
-                                        stateMachineName:
-                                            menu.stateMachineName);
-                                menu.input =
-                                    controller.findSMI("active") as SMIBool;
-                              },
-                              press: () {
-                                menu.input!.change(true);
-                                Future.delayed(const Duration(seconds: 1), () {
-                                  menu.input!.change(false);
-                                });
-                                setState(() {
-                                  selectedMenu = menu;
-                                });
-                              },
-                              isActive: selectedMenu == menu,
-                            )),
                         Padding(
                           padding: EdgeInsets.only(top: 100),
                           child: Align(
@@ -219,7 +197,7 @@ class _HomepageState extends State<Homepage>
                       currentIndex = index;
                     });
                   },
-                  children: [Page1(), login(), IndexApp()],
+                  children: [login(), Actshow(), MyQRCode()],
                 ),
               ),
             ),
